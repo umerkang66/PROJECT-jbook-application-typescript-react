@@ -4,39 +4,39 @@ import CodeEditor from './code-editor';
 import Preview from './preview';
 import bundler from '../bundler';
 import Resizable from './resizable';
+import { Cell } from '../redux';
+import { useActions } from '../hooks/use-actions';
 
-const CodeCell = () => {
-  const [input, setInput] = useState('');
-  const [debouncedInput, setDebouncedInput] = useState(input);
+interface CodeCellProps {
+  cell: Cell;
+}
+
+const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
   const [code, setCode] = useState('');
   const [err, setErr] = useState('');
 
-  // use effect for setting debounced term
+  const { updateCell } = useActions();
+
   useEffect(() => {
-    const timerId = setTimeout(() => {
-      setDebouncedInput(input);
-    }, 1000);
+    const timer = setTimeout(async () => {
+      const output = await bundler(cell.content);
+      setCode(output.code);
+      setErr(output.err);
+    }, 750);
 
     return () => {
-      clearTimeout(timerId);
+      clearTimeout(timer);
     };
-  }, [input]);
-
-  useEffect(() => {
-    const onChangeBundle = async () => {
-      const resultCode = await bundler(debouncedInput);
-      setCode(resultCode.code);
-      setErr(resultCode.err);
-    };
-
-    onChangeBundle();
-  }, [debouncedInput]);
+  }, [cell.content]);
 
   return (
     <Resizable direction="vertical">
       <div style={{ height: '100%', display: 'flex', flexDirection: 'row' }}>
         <Resizable direction="horizontal">
-          <CodeEditor initialValue="" onChange={input => setInput(input)} />
+          <CodeEditor
+            initialValue={cell.content}
+            onChange={input => updateCell(cell.id, input)}
+          />
         </Resizable>
         <Preview code={code} err={err} />
       </div>
