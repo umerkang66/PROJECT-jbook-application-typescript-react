@@ -1,4 +1,4 @@
-import './text-editor.css';
+import '../css/text-editor.css';
 import { useState, useEffect, useRef } from 'react';
 import MDEditor from '@uiw/react-md-editor';
 import { Cell } from '../redux';
