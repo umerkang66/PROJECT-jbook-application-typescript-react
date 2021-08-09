@@ -1,4 +1,4 @@
-### JavaScript and React IDE
+# JavaScript and React IDE
 
 This project is bundling and executing JavaScript and React code in the browser. There are two blocks. One is Code Block and other one is Text Block
 
