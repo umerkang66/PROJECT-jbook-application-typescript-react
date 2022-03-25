@@ -1,5 +1,5 @@
 import '../styles/cell-list.css';
-import { FC, Fragment, useEffect } from 'react';
+import { FC, Fragment } from 'react';
 // Actions
 import { useTypedSelector } from '../hooks/use-typed-selector';
 

@@ -1,5 +1,4 @@
 import { Dispatch } from 'redux';
-import axios from 'axios';
 
 import { ActionType } from '../action-types';
 import {
@@ -12,11 +11,10 @@ import {
     Direction,
     Actions,
 } from '../actions';
-import { CellTypes, CellInterface } from '../CellInterface';
+import { CellTypes } from '../CellInterface';
 
 // BUNDLER
 import bundler from '../../bundler';
-import { RootState } from '../reducers';
 
 // ACTION_CREATORS
 export const updateCell = (id: string, content: string): UpdateCellAction => {

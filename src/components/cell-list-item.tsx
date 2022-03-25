@@ -8,30 +8,30 @@ import TextEditor from './text-editor';
 import ActionBar from './action-bar';
 
 interface CellListItemProps {
-  cell: CellInterface;
+    cell: CellInterface;
 }
 
 const CellListItem: FC<CellListItemProps> = ({ cell }) => {
-  let child: JSX.Element;
-  if (cell.type === 'code') {
-    child = (
-      <Fragment>
-        <div className="action-bar-wrapper">
-          <ActionBar id={cell.id} />
-        </div>
-        <CodeCell cell={cell} />
-      </Fragment>
-    );
-  } else {
-    child = (
-      <Fragment>
-        <ActionBar id={cell.id} />
-        <TextEditor cell={cell} />
-      </Fragment>
-    );
-  }
+    let child: JSX.Element;
+    if (cell.type === 'code') {
+        child = (
+            <Fragment>
+                <div className="action-bar-wrapper">
+                    <ActionBar id={cell.id} />
+                </div>
+                <CodeCell cell={cell} />
+            </Fragment>
+        );
+    } else {
+        child = (
+            <Fragment>
+                <ActionBar id={cell.id} />
+                <TextEditor cell={cell} />
+            </Fragment>
+        );
+    }
 
-  return <div className="cell-list-item">{child}</div>;
+    return <div className="cell-list-item">{child}</div>;
 };
 
 export default CellListItem;
