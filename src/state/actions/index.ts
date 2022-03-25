@@ -65,8 +65,4 @@ export type Actions =
     | InsertCellAfterAction
     | UpdateCellAction
     | BundleStartAction
-    | BundleCompleteAction
-    | FetchCellsAction
-    | FetchCellsCompleteAction
-    | FetchCellsErrorAction
-    | SaveCellErrorAction;
+    | BundleCompleteAction;
